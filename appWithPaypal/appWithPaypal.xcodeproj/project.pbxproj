@@ -17,7 +17,6 @@
 		4D72294A1B56D437001F9A3D /* appWithPaypalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D7229491B56D437001F9A3D /* appWithPaypalTests.m */; };
 		4D9143961B56D6830021BE1E /* ItmeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9143951B56D6830021BE1E /* ItmeListController.m */; };
 		4D9143991B56D6CF0021BE1E /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9143981B56D6CF0021BE1E /* Item.m */; };
-		4D91439F1B570D860021BE1E /* AppWithPaypalDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D91439E1B570D860021BE1E /* AppWithPaypalDelegate.m */; };
 		4DAC35E01B5820CC000835F4 /* ShoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAC35DF1B5820CC000835F4 /* ShoppingViewController.m */; };
 		4DAC35E31B5820FC000835F4 /* ShoppingCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAC35E21B5820FC000835F4 /* ShoppingCart.m */; };
 		F6EB01EB271C3F892EB81FB2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD789FF02F1F2E0991745205 /* libPods.a */; };
@@ -53,8 +52,6 @@
 		4D9143951B56D6830021BE1E /* ItmeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItmeListController.m; path = controller/ItmeListController.m; sourceTree = "<group>"; };
 		4D9143971B56D6CF0021BE1E /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = class/Item.h; sourceTree = "<group>"; };
 		4D9143981B56D6CF0021BE1E /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = class/Item.m; sourceTree = "<group>"; };
-		4D91439D1B570D860021BE1E /* AppWithPaypalDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppWithPaypalDelegate.h; sourceTree = "<group>"; };
-		4D91439E1B570D860021BE1E /* AppWithPaypalDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppWithPaypalDelegate.m; sourceTree = "<group>"; };
 		4DAC35DE1B5820CC000835F4 /* ShoppingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingViewController.h; path = controller/ShoppingViewController.h; sourceTree = "<group>"; };
 		4DAC35DF1B5820CC000835F4 /* ShoppingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingViewController.m; path = controller/ShoppingViewController.m; sourceTree = "<group>"; };
 		4DAC35E11B5820FC000835F4 /* ShoppingCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingCart.h; path = class/ShoppingCart.h; sourceTree = "<group>"; };
@@ -137,8 +134,6 @@
 			children = (
 				4D72292E1B56D437001F9A3D /* AppDelegate.h */,
 				4D72292F1B56D437001F9A3D /* AppDelegate.m */,
-				4D91439D1B570D860021BE1E /* AppWithPaypalDelegate.h */,
-				4D91439E1B570D860021BE1E /* AppWithPaypalDelegate.m */,
 				4D72292B1B56D437001F9A3D /* Info.plist */,
 				4D72292C1B56D437001F9A3D /* main.m */,
 			);
@@ -312,7 +307,6 @@
 				4D9143961B56D6830021BE1E /* ItmeListController.m in Sources */,
 				4D7229331B56D437001F9A3D /* appWithPaypal.xcdatamodeld in Sources */,
 				4DAC35E31B5820FC000835F4 /* ShoppingCart.m in Sources */,
-				4D91439F1B570D860021BE1E /* AppWithPaypalDelegate.m in Sources */,
 				4D7229361B56D437001F9A3D /* ViewController.m in Sources */,
 				4D72292D1B56D437001F9A3D /* main.m in Sources */,
 			);
