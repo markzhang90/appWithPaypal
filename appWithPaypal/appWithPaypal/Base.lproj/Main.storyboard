@@ -110,7 +110,7 @@
                                 <action selector="AddToCart:" destination="hLw-W0-8v8" id="BNC-H1-JkB"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="ShoopingCast" id="drT-he-LCs">
+                        <barButtonItem key="rightBarButtonItem" title="ShoopingCart" id="drT-he-LCs">
                             <connections>
                                 <segue destination="qaL-n3-bYI" kind="show" id="lr5-Md-Jfq"/>
                             </connections>
