@@ -125,6 +125,12 @@
             NSLog(@"Unable to save managed object context.");
             NSLog(@"%@, %@", error, error.localizedDescription);
         }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"success"
+                                                        message:@"updated count"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }else{
 //    have new record
         NSManagedObject *add_new = [NSEntityDescription
@@ -138,6 +144,12 @@
             NSLog(@"Unable to save managed object context.");
             NSLog(@"%@, %@", error, error.localizedDescription);
         }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"success"
+                                                        message:@"new item added"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
     }
     
