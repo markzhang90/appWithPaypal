@@ -8,6 +8,7 @@
 
 #import "ItmeListController.h"
 #import "Item.h"
+#import "ShoppingCart.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define kPayPalEnvironment PayPalEnvironmentNoNetwork
@@ -21,21 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    tableData = [NSMutableArray arrayWithObjects: nil];
-    Item *item1 = [[Item alloc] init];
-    item1.price = @"10";
-    item1.name = @"item1";
-    [tableData addObject:item1];
-    
-    Item *item2 = [[Item alloc] init];
-    item2.price = @"20";
-    item2.name = @"item2";
-    
-    [tableData addObject:item2];
-    for(Item *element in tableData) {
-        NSLog(@"%d", 1);
-        NSLog(@"%@", element.name);
-    }
+    tableData = [self retriveData];
+
 //    NSLog(@"%lu", (unsigned long)[tableData count]);
 //    NSLog(@"%@", item1.name);
 //    
@@ -64,8 +52,35 @@
     
     // use default environment, should be Production in real life
     self.environment = kPayPalEnvironment;
+    
+    
+    
+    
 }
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
+}
+- (NSArray *)retriveData{
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"ShoppingCart" inManagedObjectContext:context]];
 
+    NSError *error = nil;
+    NSArray *result = [self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    //if exist record update
+    if ([result count] > 0) {
+        return result;
+        
+    }
+    return nil;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -97,33 +112,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TableItem" forIndexPath:indexPath];
-    Item *currentItem = [tableData objectAtIndex:indexPath.row];
+    NSManagedObjectContext *currentItem = [tableData objectAtIndex:indexPath.row];
     
     
-    cell.textLabel.text = currentItem.name;
-    cell.detailTextLabel.text = currentItem.price;
+    cell.textLabel.text = [currentItem valueForKey:@"name"];
+    NSString *content = [NSString stringWithFormat:@"unit price: %@, count: %@", [[currentItem valueForKey:@"price"] stringValue], [[currentItem valueForKey:@"count"] stringValue]];
+    cell.detailTextLabel.text = content;
     // Configure the cell...
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (self.lastIndexPath==indexPath) return; // nothing to do
-    
-    // deselect old
-    UITableViewCell *old = [self.tableView cellForRowAtIndexPath:self.lastIndexPath];
-    old.accessoryType = UITableViewCellAccessoryNone;
-    [old setSelected:FALSE animated:TRUE];
-    
-    // select new
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    [cell setSelected:TRUE animated:TRUE];
-    
-    // keep track of the last selected cell
-    self.lastIndexPath = indexPath;
-}
 
 - (IBAction)pay:(UIBarButtonItem *)sender {
     
@@ -134,9 +133,9 @@
     //       and simply set payment.amount to your total charge.
     
     // Optional: include multiple items
-    PayPalItem *item1 = [self setPayItem];
-    if(item1 != nil){
-        NSArray *items = @[item1];
+    NSArray *items = [self setPayItem];
+    if(items){
+        
         NSDecimalNumber *subtotal = [PayPalItem totalPriceForItems:items];
     
     // Optional: include payment details
@@ -151,7 +150,7 @@
         PayPalPayment *payment = [[PayPalPayment alloc] init];
         payment.amount = total;
         payment.currencyCode = @"USD";
-        payment.shortDescription = @"Hipster clothing";
+        payment.shortDescription = @"Total Price";
         payment.items = items;  // if not including multiple items, then leave payment.items as nil
         payment.paymentDetails = paymentDetails; // if not including payment details, then leave payment.paymentDetails as nil
     
@@ -172,16 +171,20 @@
     }
 }
 
-- (PayPalItem *) setPayItem{
-    if (self.lastIndexPath) {
-        
-        Item *pay_item = [tableData objectAtIndex:self.lastIndexPath.row];
-        PayPalItem *this_item = [PayPalItem itemWithName:pay_item.name
-                                            withQuantity:1
-                                               withPrice:[NSDecimalNumber decimalNumberWithString:pay_item.price]
+- (NSArray *) setPayItem{
+    if (self.tableData) {
+        NSMutableArray *items=[[NSMutableArray alloc] init];
+        for(NSManagedObjectContext *pay_item in self.tableData){
+            
+            PayPalItem *this_item = [PayPalItem itemWithName:[pay_item valueForKey:@"name"]
+                                            withQuantity:[[pay_item valueForKey:@"count"] integerValue]
+                                               withPrice:[NSDecimalNumber decimalNumberWithDecimal:[[pay_item valueForKey:@"price"] decimalValue]]
                                             withCurrency:@"USD"
                                                  withSku:@"0"];
-        return this_item;
+            [items addObject: this_item];
+        }
+        NSArray *array = [items copy];
+        return array;
         
     }
     return nil;

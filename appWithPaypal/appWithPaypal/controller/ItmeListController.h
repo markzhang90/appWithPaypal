@@ -10,7 +10,7 @@
 #import "PayPalMobile.h"
 
 @interface ItmeListController : UITableViewController<PayPalPaymentDelegate, PayPalFuturePaymentDelegate, PayPalProfileSharingDelegate, UIPopoverControllerDelegate>
-@property (nonatomic, retain) NSMutableArray *tableData;
+@property (nonatomic, retain) NSArray *tableData;
 @property (retain) NSIndexPath* lastIndexPath;
 @property(nonatomic, strong, readwrite) NSString *environment;
 @property(nonatomic, assign, readwrite) BOOL acceptCreditCards;

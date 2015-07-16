@@ -19,4 +19,8 @@
   return YES;
 }
 
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application{
+    
+}
 @end

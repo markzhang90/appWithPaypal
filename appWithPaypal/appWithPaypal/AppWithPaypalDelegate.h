@@ -5,7 +5,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppWithPaypalDelegate : UIResponder <UIApplicationDelegate>
+@interface AppWithPaypalDelegate : UIResponder <UIApplicationDelegate, NSObject>
 
 @property(strong, nonatomic) UIWindow *window;
 

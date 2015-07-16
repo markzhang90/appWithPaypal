@@ -62,12 +62,64 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="qaL-n3-bYI" kind="relationship" relationship="rootViewController" id="xWT-ao-Fxw"/>
+                        <segue destination="hLw-W0-8v8" kind="relationship" relationship="rootViewController" id="MVf-Gs-zfZ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cT3-JZ-Web" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-69" y="153"/>
+        </scene>
+        <!--Shopping View Controller-->
+        <scene sceneID="Js1-kh-58w">
+            <objects>
+                <tableViewController id="hLw-W0-8v8" customClass="ShoppingViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="127" sectionHeaderHeight="22" sectionFooterHeight="22" id="hPa-Vn-UAI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="productItem" textLabel="9AN-ox-isr" detailTextLabel="XG4-gI-C69" rowHeight="127" style="IBUITableViewCellStyleSubtitle" id="z4l-Gs-IwP">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z4l-Gs-IwP" id="8qT-j4-Iyu">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9AN-ox-isr">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XG4-gI-C69">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hLw-W0-8v8" id="4Tp-Lw-iNh"/>
+                            <outlet property="delegate" destination="hLw-W0-8v8" id="OW2-pS-o3F"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="HrK-be-1qZ">
+                        <barButtonItem key="leftBarButtonItem" title="Add" id="UOb-sF-8hb">
+                            <connections>
+                                <action selector="AddToCart:" destination="hLw-W0-8v8" id="BNC-H1-JkB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="ShoopingCast" id="drT-he-LCs">
+                            <connections>
+                                <segue destination="qaL-n3-bYI" kind="show" id="lr5-Md-Jfq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T0X-sy-Zih" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="279" y="837"/>
         </scene>
     </scenes>
 </document>
